@@ -1,0 +1,42 @@
+
+<a routerLink="/novo" class="btn btn-primary my-2"><i class="fas fa-user-plus mr-1"></i>Novo</a>
+
+<div class="row">
+
+  <div class="col-sm-5">
+
+    <busca (valor)="buscarPorNome($event)"></busca>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th class="text-center">Selecionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contato of getContatos()">
+          <td>{{contato.id}}</td>
+          <td>{{contato.nome}}</td>
+          <td class="text-center">
+            <a [routerLink]="['/editar',contato.id]" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+            <a [routerLink]="['/detalhe',contato.id]" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Detalhes"><i class="fas fa-eye"></i></a>
+            <remocao [id]="contato.id" (excluido)="atualizarLista()"></remocao>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th class="text-center">Selecionar</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <paginacao [totalPages]="getTotalPages()" (onChangeSeletor)="setSize($event)" (onClickPagina)="buscarPorPagina($event)" ></paginacao>
+  </div>
+
+</div>
+
