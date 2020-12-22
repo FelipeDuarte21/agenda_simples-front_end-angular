@@ -10,7 +10,7 @@ import { Contato } from '../app.contato.model';
 export class ListaComponent implements OnInit {
 
   private page_default:number = 0;
-  private size_default:number = 3;
+  private size_default:number = 4;
 
   private contatos: Array<Contato>;
   private totalPages:number = 1;

@@ -1,25 +1,30 @@
 <div class="row">
 
-    <div class="col-sm-2">
-
-      <select name="size" class="form-control" (change)="onChange($event.target.value)">
-        <option value="3">3</option>
-        <option value="6">6</option>
+  <div class="col-4">
+    <form class="form-inline">
+      <label for="size" class="mr-1">Exibir:</label>
+      <select name="size" id="size" class="form-control form-control-sm" (change)="onChange($event.target.value)">
+        <option value="4">4</option>
+        <option value="8">8</option>
         <option value="12">12</option>
       </select>
+    </form>
+  </div>
 
-    </div>
-
-    <div class="col-sm-10">
-
-      <nav>
-        <ul class="pagination">
-          <li #f class="page-item" *ngFor="let a of getTotalPages();let i = index">
-            <a href="#" (click)="onClick(i,f)" *ngIf="setPrimeiroElemento(f,i)" class="page-link">{{i+1}}</a>
-          </li>
-        </ul>
-      </nav>
-
-    </div>
-
+  <div class="col-8">
+    <nav class="d-inline">
+      <ul class="pagination pagination-sm">
+        <li #f class="page-item" *ngFor="let a of getTotalPages();let i = index">
+          <a href="#" (click)="onClick(i,f)" *ngIf="setPrimeiroElemento(f,i)" class="page-link">{{i+1}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
 </div>
+
+
+
+    
+
+      

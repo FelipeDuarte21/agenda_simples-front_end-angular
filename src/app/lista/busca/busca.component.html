@@ -1,7 +1,7 @@
-<div class="my-2">
-    <form class="form-inline"  #f="ngForm" (ngSubmit)="pesquisar(f)"> 
-        <input type="text" name="busca" class="form-control form-control-sm mr-1" placeholder="digite o nome" #i (keyup)="setNome(i.value)" ngModel >
-        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search mr-1"></i>Buscar</button>
-    </form>
-</div>
+<form class="form-inline"  #f="ngForm" (ngSubmit)="pesquisar(f)"> 
+    <input type="text" name="busca" class="form-control form-control-sm mr-1" placeholder="digite o nome" #i (keyup)="setNome(i.value)" ngModel >
+    <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fa fa-search mr-1"></i>Buscar
+    </button>
+</form>
   
