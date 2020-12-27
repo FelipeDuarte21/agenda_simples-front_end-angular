@@ -1,36 +1,40 @@
-<a routerLink="/" class="btn btn-danger my-2"><i class="fas fa-undo-alt mr-1"></i>Voltar</a>
+<div class="container-fluid">
 
-<div class="row">
-   
-    <div class="col-3">
+    <div class="row justify-content-center">
 
-        <form #f="ngForm" (ngSubmit)="alterar(f)" >
+        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-3 mb-4">
 
-            <input type="hidden" value="" name="id" [ngModel]="contato.id">
+            <a routerLink="/" class="btn btn-outline-secondary mb-4 mt-5"><i class="fa fa-undo mr-1"></i>Voltar</a>
 
-            <div class="form-group">
-                <label for="nome" class="mb-0">Nome:</label>
-                <input type="text" name="nome" id="nome" class="form-control" [ngModel]="contato.nome" >   
-            </div>
+            <form #f="ngForm" (ngSubmit)="alterar(f)" >
 
-            <div class="form-group">
-                <label for="celular" class="mb-0">Celular:</label>
-                <input type="text" name="celular" id="celular" class="form-control"  [textMask]="{mask:maskCelular}" [ngModel]="contato.celular">
-            </div>
+                <input type="hidden" value="" name="id" [ngModel]="contato.id">
             
-            <div class="form-group">
-                <label for="telefone" class="mb-0">Telefone:</label>
-                <input type="text" name="telefone" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}" [ngModel]="contato.telefone">
-            </div>
+                <div class="form-group">
+                    <label for="nome" class="mb-0">Nome:</label>
+                    <input type="text" name="nome" id="nome" class="form-control" [ngModel]="contato.nome" >   
+                </div>
             
-            <div class="form-group">
-                <label for="email" class="mb-0">Email:</label>
-                <input type="email" name="email" id="email" class="form-control" [ngModel]="contato.email">
-            </div>
-            
-            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle mr-1"></i>Alterar</button>
-        </form>
+                <div class="form-group">
+                    <label for="celular" class="mb-0">Celular:</label>
+                    <input type="text" name="celular" id="celular" class="form-control"  [textMask]="{mask:maskCelular}" [ngModel]="contato.celular">
+                </div>
+                        
+                <div class="form-group">
+                    <label for="telefone" class="mb-0">Telefone:</label>
+                    <input type="text" name="telefone" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}" [ngModel]="contato.telefone">
+                </div>
+                        
+                <div class="form-group">
+                    <label for="email" class="mb-0">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" [ngModel]="contato.email">
+                </div>
+                        
+                <button type="submit" class="btn btn-info mt-3"><i class="fa fa-save mr-1"></i>Alterar</button>
+            </form>
 
-    </div>
+        </div>
     
+    </div>
+
 </div>

@@ -5,9 +5,22 @@
 
         <div class="col col-md-11 mb-3">
 
-            <a routerLink="/novo" class="btn btn-success mt-5 mb-4"><i class="fa fa-user-plus mr-1"></i>Cadastrar</a>
+            <a routerLink="/novo" class="btn btn-success mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
 
-            <ul class="nav nav-tabs">
+            <!--Outros components-->
+            <div class="row my-3">
+
+                <div class="col-12 col-md-5 col-lg-4">
+                    <busca (valor)="buscarPorNome($event)"></busca>
+                </div>
+
+                <div class="col-12 col-md-7 col-lg-8">
+                    <paginacao [totalPages]="getTotalPages()" [currentPage]="getPaginaPadrao()" (onChangeSeletor)="setSize($event)" (onClickPagina)="buscarPorPagina($event)"></paginacao>
+                </div>
+
+            </div>
+            
+            <ul class="nav nav-tabs mt-2">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#cards">
                         <i class="fa fa-id-card mr-1"></i>Cards
@@ -18,21 +31,9 @@
                         <i class="fa fa-table mr-1"></i>Tabela
                     </a>
                 </li>
-              </ul>
-              <div class="tab-content">
+            </ul>
 
-                <!--Outros components-->
-                <div class="row my-3">
-
-                    <div class="col-12 col-md-4">
-                        <busca (valor)="buscarPorNome($event)"></busca>
-                    </div>
-
-                    <div class="col-12 col-md-8">
-                        <paginacao [totalPages]="getTotalPages()" (onChangeSeletor)="setSize($event)" (onClickPagina)="buscarPorPagina($event)"></paginacao>
-                    </div>
-
-                </div>
+            <div class="tab-content mt-4">
 
                 <!--Cards-->
                 <div class="tab-pane fade show active" id="cards">

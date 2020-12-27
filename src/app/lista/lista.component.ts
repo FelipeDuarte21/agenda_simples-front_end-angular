@@ -10,7 +10,7 @@ import { Contato } from '../app.contato.model';
 export class ListaComponent implements OnInit {
 
   private page_default:number = 0;
-  private size_default:number = 4;
+  private size_default:number = 4; 
 
   private contatos: Array<Contato>;
   private totalPages:number = 1;
@@ -27,10 +27,15 @@ export class ListaComponent implements OnInit {
 
   getTotalPages(): number{
     return this.totalPages;
+  } 
+
+  getPaginaPadrao(): number{
+    return this.page_default;
   }
   
   setSize(size:number){
     this.size_default = size;
+    this.page_default = 0;
     this.buscarTodos(this.page_default, this.size_default);
   }
 
@@ -53,6 +58,7 @@ export class ListaComponent implements OnInit {
     this.contatoService.buscarTodos(page,size).subscribe(res => {
       this.contatos = res.content;
       this.totalPages = res.totalPages;
+      this.page_default = page;
     });
   }
 
