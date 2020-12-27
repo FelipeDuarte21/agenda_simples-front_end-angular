@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
 
     <div class="row justify-content-center">
@@ -7,18 +6,18 @@
 
             <a routerLink="/novo" class="btn btn-success mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
 
-            <!--Outros components-->
+            <!--Componentes de busca-->
             <div class="row my-3">
 
                 <div class="col-12 col-md-5 col-lg-4">
-                    <busca (valor)="buscarPorNome($event)"></busca>
+                    <busca (valor)="setNome($event)"></busca>
                 </div>
 
                 <div class="col-12 col-md-7 col-lg-8">
-                    <paginacao [totalPages]="getTotalPages()" [currentPage]="getPaginaPadrao()" (onChangeSeletor)="setSize($event)" (onClickPagina)="buscarPorPagina($event)"></paginacao>
+                    <paginacao [totalPages]="totalDePaginas" [currentPage]="paginaAtual" (onChangeSeletor)="setQtdPorPagina($event)" (onClickPagina)="buscarPorPagina($event)"></paginacao>
                 </div>
 
-            </div>
+            </div> 
             
             <ul class="nav nav-tabs mt-2">
                 <li class="nav-item">
@@ -36,11 +35,11 @@
             <div class="tab-content mt-4">
 
                 <!--Cards-->
-                <div class="tab-pane fade show active" id="cards">
+                <div class="tab-pane fade show active" id="cards" >
 
                     <div class="row">
 
-                        <div class="col col-md-6 col-lg-4 col-xl-3" *ngFor="let contato of getContatos()">
+                        <div class="col col-md-6 col-lg-4 col-xl-3" *ngFor="let contato of contatos">
 
                             <div class="card linha-card mt-2">
                                 <div class="card-header py-1">
@@ -93,7 +92,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let contato of getContatos()" class="nao-quebra-tabela">
+                                <tr *ngFor="let contato of contatos" class="nao-quebra-tabela">
                                     <td>{{contato.id}}</td>
                                     <td>{{contato.nome}}</td>
                                     <td>{{contato.telefone}}</td>

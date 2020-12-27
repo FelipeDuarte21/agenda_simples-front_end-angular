@@ -9,57 +9,64 @@ import { Contato } from '../app.contato.model';
 })
 export class ListaComponent implements OnInit {
 
-  private page_default:number = 0;
-  private size_default:number = 4; 
+    contatos: Array<Contato>;
 
-  private contatos: Array<Contato>;
-  private totalPages:number = 1;
+    paginaAtual:number = 0;
+    qtdPorPagina:number = 4; 
+    totalDePaginas:number = 1;
 
-  constructor(private contatoService:ContatoService) { }
+    private nome:string = null;
 
-  ngOnInit() {
-    this.buscarTodos(this.page_default,this.size_default);
-  }
+    constructor(private contatoService:ContatoService) { }
 
-  getContatos(): Array<Contato>{
-    return this.contatos;
-  }
+    ngOnInit() {
+        this.buscarTodos(this.paginaAtual,this.qtdPorPagina);
+    }
 
-  getTotalPages(): number{
-    return this.totalPages;
-  } 
+    buscarTodos(paginaAtual:number,qtdPorPagina:number){
+        this.contatoService.buscarTodos(paginaAtual,qtdPorPagina)
+            .subscribe(res => {
+                this.contatos = res.content;
+                this.totalDePaginas = res.totalPages;
+                this.paginaAtual = paginaAtual;
+            });
+    }
 
-  getPaginaPadrao(): number{
-    return this.page_default;
-  }
-  
-  setSize(size:number){
-    this.size_default = size;
-    this.page_default = 0;
-    this.buscarTodos(this.page_default, this.size_default);
-  }
+    buscarPorPagina(pagina: any){
+        this.estadoAtual(pagina,this.qtdPorPagina);
+    }
 
-  buscarPorPagina(pagina: any){
-    this.buscarTodos(pagina,this.size_default);
-  }
+    setQtdPorPagina(qtd:number){
+        this.qtdPorPagina = qtd;
+        this.paginaAtual = 0;
+        this.estadoAtual(this.paginaAtual,this.qtdPorPagina);
+    }
 
-  buscarPorNome(nome:any){
-    this.contatoService.buscarPorNome(nome,this.page_default,this.size_default).subscribe(res => {
-      this.contatos = res.content;
-      this.totalPages = res.totalPages;
-    });
-  }
+    estadoAtual(pagina:number,qtdPorPagina:number = 0){
+        if(!this.nome){
+            this.buscarTodos(pagina,qtdPorPagina);
+        }else{
+            this.buscarPorNome(this.nome,pagina);
+        }
+    }
 
-  atualizarLista(){
-    this.buscarTodos(this.page_default,this.size_default);
-  }
+    setNome(nome:string){
+        this.nome = nome;
+        if(this.nome.length == 0) this.nome == null;
+        this.estadoAtual(0,this.qtdPorPagina);
+    }
 
-  buscarTodos(page:number,size:number){
-    this.contatoService.buscarTodos(page,size).subscribe(res => {
-      this.contatos = res.content;
-      this.totalPages = res.totalPages;
-      this.page_default = page;
-    });
-  }
+    buscarPorNome(nome:string, pagina:number = 0){
+        this.contatoService.buscarPorNome(nome,pagina,this.qtdPorPagina)
+        .subscribe(res => {
+            this.contatos = res.content;
+            this.totalDePaginas = res.totalPages;
+            this.paginaAtual = res.number;
+        });
+    }
 
+    atualizarLista(){
+        this.buscarTodos(0,this.qtdPorPagina);
+    }
+    
 }
