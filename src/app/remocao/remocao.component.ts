@@ -18,10 +18,14 @@ export class RemocaoComponent implements OnInit {
   }
 
   excluir(){
-    this.contatoService.excluir(this.id).subscribe();
-    
-    this.excluido.emit('');
-    alert("Contato Excluído Com Sucesso!");
+    let resp = confirm("Deseja realmente excluir esse contato?");
+
+    if(resp == true){
+      this.contatoService.excluir(this.id).subscribe();
+      this.excluido.emit('');
+      alert("Contato Excluído Com Sucesso!");
+    }
+
   }
 
 }
