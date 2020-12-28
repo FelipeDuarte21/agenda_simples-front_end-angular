@@ -6,31 +6,48 @@
 
             <a routerLink="/" class="btn btn-outline-secondary mb-4 mt-5"><i class="fa fa-undo mr-1"></i>Voltar</a>
 
-            <form [formGroup]="formEdicao" (submit)="alterar()">
+            <form [formGroup]="formEdicao" (submit)="alterar()"> 
 
                 <input type="hidden" formControlName="id">
 
                 <div class="form-group">
                     <label for="nome" class="mb-0">Nome:</label>
-                    <input type="text" id="nome" class="form-control" formControlName="nome">   
+                    <input type="text" id="nome" class="form-control" formControlName="nome"
+                        [ngClass]="{'is-invalid': verificaCampo('nome')}" autocomplete="off">
+                        
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('nome').errors?.required">Nome é requerido!</div>
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('nome').errors?.maxlength">Nome maior que 50 caracteres</div>
                 </div>
             
                 <div class="form-group">
                     <label for="celular" class="mb-0">Celular:</label>
-                    <input type="text" id="celular" class="form-control" [textMask]="{mask:maskCelular}" formControlName="celular">
+                    <input type="text" id="celular" class="form-control" [textMask]="{mask:maskCelular}" formControlName="celular"
+                        [ngClass]="{'is-invalid': verificaCampo('celular')}" autocomplete="off">
+                
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('celular').errors?.required">Celular é requerido!</div>
+
                 </div>
                         
                 <div class="form-group">
                     <label for="telefone" class="mb-0">Telefone:</label>
-                    <input type="text" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}" formControlName="telefone">
+                    <input type="text" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}" formControlName="telefone"
+                        [ngClass]="{'is-invalid': verificaCampo('telefone')}" autocomplete="off">
+                
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('telefone').errors?.required">Telefone é requerido!</div>
+
                 </div>
                         
                 <div class="form-group">
                     <label for="email" class="mb-0">Email:</label>
-                    <input type="email" id="email" class="form-control" formControlName="email">
+                    <input type="email" id="email" class="form-control" formControlName="email"
+                        [ngClass]="{'is-invalid': verificaCampo('email')}" autocomplete="off">
+
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('email').errors?.required">Email é requerido!</div>
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('email').errors?.email">Email invalido!</div>
+                    <div class="invalid-feedback" *ngIf="formEdicao.get('email').errors?.maxlength">Email maior que 80 caracteres!</div>
                 </div>
                         
-                <button type="submit" class="btn btn-info mt-3"><i class="fa fa-save mr-1"></i>Alterar</button>
+                <button [disabled]="formEdicao.invalid" type="submit" class="btn btn-info mt-3"><i class="fa fa-save mr-1"></i>Alterar</button>
             </form>
 
         </div>

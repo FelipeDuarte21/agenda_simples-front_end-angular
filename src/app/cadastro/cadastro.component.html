@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <label for="nome" class="mb-0">Nome:</label>
-                    <input formControlName="nome" type="text" name="nome" id="nome" class="form-control" 
+                    <input formControlName="nome" type="text" id="nome" class="form-control" 
                         [ngClass]="{'is-invalid': verificaCampo('nome')}" autocomplete="off">
 
                     <div class="invalid-feedback" *ngIf="formCadastro.get('nome').errors?.required">Nome é requerido!</div>
@@ -20,7 +20,7 @@
             
                 <div class="form-group">
                     <label for="celular" class="mb-0">Celular:</label>
-                    <input formControlName="celular" type="text" name="celular" id="celular" class="form-control" [textMask]="{mask:maskCelular}"
+                    <input formControlName="celular" type="text" id="celular" class="form-control" [textMask]="{mask:maskCelular}"
                         [ngClass]="{'is-invalid': verificaCampo('celular')}" autocomplete="off">
 
                     <div class="invalid-feedback" *ngIf="formCadastro.get('celular').errors?.required">Celular é requerido!</div>
@@ -29,7 +29,7 @@
                         
                 <div class="form-group">
                     <label for="telefone" class="mb-0">Telefone:</label>
-                    <input formControlName="telefone" type="text" name="telefone" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}"
+                    <input formControlName="telefone" type="text" id="telefone" class="form-control" [textMask]="{mask:maskTelefone}"
                         [ngClass]="{'is-invalid': verificaCampo('telefone')}" autocomplete="off">
 
                     <div class="invalid-feedback" *ngIf="formCadastro.get('telefone').errors?.required">Telefone é requerido!</div>
@@ -37,7 +37,7 @@
                         
                 <div class="form-group">
                     <label for="email" class="mb-0">Email:</label>
-                    <input formControlName="email" type="email" name="email" id="email" class="form-control"
+                    <input formControlName="email" type="email" id="email" class="form-control"
                         [ngClass]="{'is-invalid': verificaCampo('email')}" autocomplete="off">
 
                     <div class="invalid-feedback" *ngIf="formCadastro.get('email').errors?.required">Email é requerido!</div>

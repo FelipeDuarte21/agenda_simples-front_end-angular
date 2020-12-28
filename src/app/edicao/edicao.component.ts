@@ -52,6 +52,10 @@ export class EdicaoComponent implements OnInit {
 
     }
 
+    verificaCampo(nome:string): boolean{
+        return this.formEdicao.get(nome).errors && this.formEdicao.get(nome).touched;
+    }
+
     alterar(){
 
         let contato = this.formEdicao.getRawValue() as Contato;
