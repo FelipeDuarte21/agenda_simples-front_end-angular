@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ContatoService } from '../contato.service';
-import { Contato } from '../app.contato.model';
+import { Observable } from 'rxjs';
+import { Contato, MyObject } from 'src/app/core/contato.model';
+import { ContatoService } from 'src/app/core/contato.service';
 
 @Component({
   selector: 'lista',

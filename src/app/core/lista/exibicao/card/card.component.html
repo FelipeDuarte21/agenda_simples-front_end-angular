@@ -1,0 +1,35 @@
+<div class="row">
+
+    <div class="col col-md-6 col-lg-4 col-xl-3" *ngFor="let contato of contatos">
+
+        <div class="card linha-card mt-2">
+            <div class="card-header py-1">
+                <h6 class="d-inline">#</h6>
+                <span>{{contato.id}}</span>
+            </div>
+            <div class="card-body">
+
+                <h6 class="mt-2 mb-0">Nome:</h6>
+                <span>{{contato.nome}}</span>
+
+                <h6 class="mt-3 mb-0">Telefone:</h6>
+                <span>{{contato.telefone}}</span>
+
+                <h6 class="mt-3 mb-0">Celular:</h6>
+                <span>{{contato.celular}}</span>
+
+                <h6 class="mt-3 mb-0">Email:</h6>
+                <span>{{contato.email}}</span>
+
+            </div>
+
+            <div class="card-footer py-2">
+                <a [routerLink]="['/editar',contato.id]" class="btn btn-info btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                <remocao [id]="contato.id" (excluido)="excluido()"></remocao>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

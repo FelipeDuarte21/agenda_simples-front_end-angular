@@ -1,11 +1,11 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'busca',
-  templateUrl: './busca.component.html',
-  styleUrls: ['./busca.component.css']
+  selector: 'busca-por-nome',
+  templateUrl: './busca-por-nome.component.html',
+  styleUrls: ['./busca-por-nome.component.css']
 })
-export class BuscaComponent implements OnInit {
+export class BuscaPorNomeComponent implements OnInit {
   
   @Output() valor = new EventEmitter();
 
@@ -22,5 +22,5 @@ export class BuscaComponent implements OnInit {
     this.valor.emit(f);
   }
  
-}
+} 
  

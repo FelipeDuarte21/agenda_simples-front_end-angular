@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs mt-2">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#cards">
+            <i class="fa fa-id-card mr-1"></i>Cards
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tabela">
+            <i class="fa fa-table mr-1"></i>Tabela
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content mt-4">
+
+    <!--Cards-->
+    <div class="tab-pane fade show active" id="cards">
+
+        <card [contatos]="contatos" (excluir)="excluindo()"></card>
+
+    </div>
+
+    <!--Tabela-->
+    <div class="tab-pane fade" id="tabela">
+
+        <tabela [contatos]="contatos" (excluir)="excluindo()"></tabela>
+
+    </div>
+
+</div>

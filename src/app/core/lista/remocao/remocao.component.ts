@@ -1,5 +1,6 @@
 import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
-import { ContatoService } from '../contato.service';
+import { ContatoService } from 'src/app/core/contato.service';
+
 
 @Component({
   selector: 'remocao',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Contato } from '../app.contato.model';
+import { Contato } from '../contato.model';
 import { ContatoService } from '../contato.service';
 
 @Component({

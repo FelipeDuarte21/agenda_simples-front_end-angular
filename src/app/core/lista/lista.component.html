@@ -1,0 +1,22 @@
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="col col-md-11 mb-3">
+
+            <a [routerLink]="['/novo']" class="btn btn-success mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
+
+            <!--Componentes de busca-->
+            <busca [totalDePaginas]="totalDePaginas" [paginaAtual]="paginaAtual" 
+                (emitNome)="buscarPorNome($event)" (emitBuscarPorPagina)="buscarPorPagina($event)" 
+                    (emitQtdPorPagina)="setQtdPorPagina($event)">
+            </busca> 
+
+            <!--Exibição-->
+            <exibicao [contatos]="contatos" (excluir)="atualizarLista()"></exibicao>
+            
+        </div>
+
+    </div>
+
+</div> 
