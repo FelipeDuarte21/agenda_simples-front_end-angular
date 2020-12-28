@@ -1,38 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContatoService } from '../contato.service';
 import { Contato } from '../app.contato.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'edicao',
   templateUrl: './edicao.component.html',
   styleUrls: ['./edicao.component.css']
 })
-export class EdicaoComponent implements OnInit {
+export class EdicaoComponent implements OnInit { 
 
-  maskCelular = ['(',/\d/,/\d/,')',' ','9',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
-  maskTelefone = ['(',/\d/,/\d/,')',' ',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
+    formEdicao: FormGroup;
 
-  private id:string;
+    maskCelular = ['(',/\d/,/\d/,')',' ','9',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
+    maskTelefone = ['(',/\d/,/\d/,')',' ',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
 
-  contato:Contato;
+    constructor(
+        private formBuilder:FormBuilder,
+        private route:ActivatedRoute, 
+        private router: Router,
+        private contatoService:ContatoService
+    ) {}
 
-  constructor(private route:ActivatedRoute, private contatoService:ContatoService) {
-    this.id = route.snapshot.params['id'];
-  }
+    ngOnInit() {
 
-  ngOnInit() {
-    this.contatoService.buscarPorId(this.id).subscribe(contato => this.contato = contato);
-  }
+        let id = this.route.snapshot.params['id'];
 
-  alterar(f:any){
-    let contato:Contato = f.form.value;
+        this.contatoService.buscarPorId(id).subscribe(contato => {
 
-    this.contatoService.alterar(contato).subscribe(res => console.log(res));
+            this.formEdicao = this.formBuilder.group({
+                id: [contato.id,Validators.required],
+                nome: [contato.nome,
+                    [
+                        Validators.required,
+                        Validators.maxLength(50)
+                    ]
+                ],
+                celular: [contato.celular,Validators.required],
+                telefone: [contato.telefone,Validators.required],
+                email: [contato.email,
+                    [
+                        Validators.required,
+                        Validators.email,
+                        Validators.maxLength(80)
+                    ]
+                ]
+            });
 
-    alert("Alterado Com Sucesso!");
+        });
 
-    f.reset();
-  }
+    }
+
+    alterar(){
+
+        let contato = this.formEdicao.getRawValue() as Contato;
+
+        this.contatoService.alterar(contato)
+        .subscribe(res => {
+
+            this.formEdicao.reset();
+
+            this.router.navigate(['']);
+
+            alert('Alterado com sucesso!');
+
+        });
+
+    }
 
 } 

@@ -40,7 +40,7 @@ export class CadastroComponent implements OnInit {
                 ]
             ]
         });
-    }
+    } 
 
     verificaCampo(nome:string): boolean{
         return this.formCadastro.get(nome).errors && this.formCadastro.get(nome).touched;
