@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Contato, MyObject } from 'src/app/core/contato.model';
-import { ContatoService } from 'src/app/core/contato.service';
+import { tap } from 'rxjs/operators';
+import { MyObject } from '../contato.model';
+import { ContatoService } from '../contato.service';
+
 
 @Component({
   selector: 'lista',
@@ -10,7 +12,7 @@ import { ContatoService } from 'src/app/core/contato.service';
 })
 export class ListaComponent implements OnInit {
 
-    contatos: Array<Contato>;
+    paginaContatos$: Observable<MyObject>;
 
     paginaAtual:number = 0;
     qtdPorPagina:number = 4; 
@@ -18,19 +20,21 @@ export class ListaComponent implements OnInit {
 
     private nome:string = null;
 
-    constructor(private contatoService:ContatoService) { }
+    constructor(
+        private contatoService:ContatoService
+    ) { }
 
     ngOnInit() {
         this.buscarTodos(this.paginaAtual,this.qtdPorPagina);
     }
 
     buscarTodos(paginaAtual:number,qtdPorPagina:number){
-        this.contatoService.buscarTodos(paginaAtual,qtdPorPagina)
-            .subscribe(res => {
-                this.contatos = res.content;
+        this.paginaContatos$ = this.contatoService
+            .buscarTodos(paginaAtual,qtdPorPagina)
+            .pipe(tap(res => {
                 this.totalDePaginas = res.totalPages;
                 this.paginaAtual = paginaAtual;
-            });
+            }));
     }
 
     buscarPorPagina(pagina: any){
@@ -60,7 +64,6 @@ export class ListaComponent implements OnInit {
     buscarPorNome(nome:string, pagina:number = 0){
         this.contatoService.buscarPorNome(nome,pagina,this.qtdPorPagina)
         .subscribe(res => {
-            this.contatos = res.content;
             this.totalDePaginas = res.totalPages;
             this.paginaAtual = res.number;
         });

@@ -1,0 +1,43 @@
+<div class="container-fluid mb-5">
+
+    <div class="row mt-3 justify-content-center">
+
+        <div class="col-10 col-sm-8 col-md-5 col-lg-4 col-xl-2 mt-5 px-4 border rounded">
+
+            <h6 class="text-center mt-4"><i class="fa fa-book mr-1"></i>Agenda de Contatos</h6>
+    
+            <form [formGroup]="formLogin" (submit)="logar()">
+
+                <div class="form-group mt-4">
+                    <label for="email" class="mb-0">Email:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                        </div>
+                        <input type="email" formControlName="email" id="email" class="form-control" placeholder="digite seu email" autocomplete="off">
+                    </div>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="senha" class="mb-0">Senha:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                        </div>
+                        <input type="password" formControlName="senha" id="senha" class="form-control" placeholder="digite sua senha" autocomplete="off">
+                    </div>
+                </div>
+
+                <p class="text-danger mb-0" *ngIf="erro">Email ou senha inválido!</p>
+    
+                <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary mt-3"><i class="fa fa-sign-in mr-1"></i>Entrar</button>
+    
+            </form>
+    
+            <p class="text-center mt-4 mb-3">Crie sua conta <a routerLink="cadastrar">aqui!</a></p>
+          
+        </div>
+
+    </div>
+    
+</div> 

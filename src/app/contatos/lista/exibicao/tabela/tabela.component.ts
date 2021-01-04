@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from "@angular/core";
-import { Contato } from "src/app/core/contato.model";
+import { Contato } from "src/app/contatos/contato.model";
 
 @Component({
     selector: 'tabela',

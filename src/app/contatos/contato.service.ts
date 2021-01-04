@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Contato, MyObject } from './contato.model';
 
-import { API_ROUTER } from './../app-api-routing';
+import { API_ROUTER } from '../app-api-routing';
 
 @Injectable()
 export class ContatoService { 
@@ -15,11 +15,11 @@ export class ContatoService {
   constructor(private http: HttpClient) { }
 
   buscarTodos(page: number, size: number): Observable<MyObject>{
-    return this.http.get<MyObject>(`${this.API}?page=${page}&size=${size}`);
+    return this.http.get<MyObject>(`${this.API}?pagina=${page}&qtdPorPagina=${size}`);
   }
 
   buscarPorNome(nome:string,page:number,size: number): Observable<MyObject>{
-    return this.http.get<MyObject>(`${this.API}/search?nome=${nome}&page=${page}&size=${size}`);
+    return this.http.get<MyObject>(`${this.API}/search?nome=${nome}&pagina=${page}&qtdPorPagina=${size}`);
   }
 
   buscarPorId(id:string): Observable<Contato>{

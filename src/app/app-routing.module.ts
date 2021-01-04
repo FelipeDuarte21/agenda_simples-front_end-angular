@@ -6,11 +6,15 @@ const routes: Routes = [
     {
         path: '', 
         pathMatch: 'full', 
-        redirectTo: 'lista'
+        redirectTo: 'login'
     },
     {
-        path: 'lista',
-        loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+        path: 'login',
+        loadChildren: () => import('./autenticacao/autenticacao.module').then(m => m.AutenticacaoModule)
+    },
+    {
+        path: 'contatos',
+        loadChildren: () => import('./contatos/contato.module').then(m => m.ContatoModule),
     }
 ];
 

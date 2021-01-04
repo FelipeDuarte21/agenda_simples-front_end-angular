@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-3 mt-5">
+
+            <a routerLink="" class="btn btn-outline-secondary mt-1"><i class="fa fa-undo mr-1"></i>Voltar</a>
+
+            <form [formGroup]="formCadastro" (submit)="cadastrar()" class="mt-4">
+
+                <div class="form-group">
+                    <label for="nome" class="mb-0">Nome</label>
+                    <input type="text" formControlName="nome" class="form-control" 
+                        [ngClass]="{'is-invalid': verificaCampo('nome')}" autocomplete="off">
+
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('nome').errors?.required">Nome é requerido!</div>
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('nome').errors?.maxlength">Nome maior que 50 caracteres</div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="email" class="mb-0">Email</label>
+                    <input type="email" formControlName="email" class="form-control" 
+                        [ngClass]="{'is-invalid': verificaCampo('email')}" autocomplete="off">
+
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('email').errors?.required">Email é requerido!</div>
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('email').errors?.email">Email inválido!</div>
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('email').errors?.maxlength">Email é maior que 80 caracteres!</div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="nome" class="mb-0">Senha</label>
+                    <input type="password" formControlName="senha" class="form-control" 
+                        [ngClass]="{'is-invalid': verificaCampo('senha')}" autocomplete="off">
+
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('senha').errors?.required">Senha é requerida!</div>
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('senha').errors?.minlength">Mínimo de 8 caracteres!</div>
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('senha').errors?.maxlength">Máximo de 16 caracteres!</div>
+                </div>
+
+                <button [disabled]="formCadastro.invalid" type="submit" class="btn btn-success mt-3">
+                    <i class="fa fa-save mr-1"></i>Cadastrar
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

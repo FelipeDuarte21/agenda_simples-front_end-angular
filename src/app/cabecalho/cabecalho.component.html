@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    
+    <a class="navbar-brand" href="#"><i class="fa fa-book mr-1"></i>Agenda</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mr-0"></ul>
+      
+        <div class="dropdown text-white mr-5 ml-0" *ngIf="(usuario$ | async) as usuario">
+            
+            <a class="dropdown-toggle text-white" href="#" id="menu-usuario" role="button" data-toggle="dropdown">
+                <i class="fa fa-user mr-1"></i>{{usuario.nome}}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="menu-usuario">
+                <a class="dropdown-item" href="#"><i class="fa fa-cog mr-1"></i>Configurações</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()" href="#"><i class="fa fa-sign-out mr-1"></i>Sair</a>
+            </div>
+
+        </div>
+
+    </div>
+</nav>

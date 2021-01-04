@@ -19,7 +19,7 @@
                 <td>{{contato.celular}}</td>
                 <td>{{contato.email}}</td>
                 <td class="text-center">
-                    <a [routerLink]="['/editar',contato.id]" class="btn btn-info btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                    <a [routerLink]="['editar',contato.id]" class="btn btn-info btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
                     <remocao [id]="contato.id" (excluido)="excluindo()"></remocao>
                 </td>
             </tr>

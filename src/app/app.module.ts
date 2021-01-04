@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { ContatoService } from './core/contato.service';
-import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
+import { CabecalhoModule } from './cabecalho/cabecalho.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CoreModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [ContatoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]  
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { Contato } from "src/app/core/contato.model";
+import { Contato } from "../../contato.model";
 
 @Component({
     selector: 'exibicao',
