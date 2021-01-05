@@ -2,8 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'paginacao',
-  templateUrl: './paginacao.component.html',
-  styleUrls: ['./paginacao.component.css']
+  templateUrl: './paginacao.component.html'
 })
 export class PaginacaoComponent implements OnInit {
 

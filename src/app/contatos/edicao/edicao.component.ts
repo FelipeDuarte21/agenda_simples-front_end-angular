@@ -6,8 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'edicao',
-  templateUrl: './edicao.component.html',
-  styleUrls: ['./edicao.component.css']
+  templateUrl: './edicao.component.html'
 })
 export class EdicaoComponent implements OnInit { 
 

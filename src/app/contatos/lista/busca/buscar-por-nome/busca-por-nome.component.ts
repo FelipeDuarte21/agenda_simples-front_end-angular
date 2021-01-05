@@ -1,26 +1,30 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'busca-por-nome',
-  templateUrl: './busca-por-nome.component.html',
-  styleUrls: ['./busca-por-nome.component.css']
+  templateUrl: './busca-por-nome.component.html'
 })
 export class BuscaPorNomeComponent implements OnInit {
-  
-  @Output() valor = new EventEmitter();
 
-  constructor() { }
+    formBuscaNome: FormGroup;
+    
+    @Output() nome = new EventEmitter();
 
-  ngOnInit() {
-  }
+    constructor(
+        private formBuilder: FormBuilder
+    ) { }
 
-  pesquisar(f:any){
-    this.valor.emit(f.form.value.busca);
-  }
+    ngOnInit() {
+        this.formBuscaNome = this.formBuilder.group({
+            busca: ['']
+        });
+    }
 
-  setNome(f:any){
-    this.valor.emit(f);
-  }
+    pesquisar(){
+        let nome = this.formBuscaNome.get('busca').value;
+        this.nome.emit(nome);
+    }
  
 } 
  

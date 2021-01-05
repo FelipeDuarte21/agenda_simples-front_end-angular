@@ -4,13 +4,13 @@ import { tap } from 'rxjs/operators';
 import { MyObject } from '../contato.model';
 import { ContatoService } from '../contato.service';
 
-
 @Component({
   selector: 'lista',
-  templateUrl: './lista.component.html',
-  styleUrls: ['./lista.component.css']
+  templateUrl: './lista.component.html'
 })
 export class ListaComponent implements OnInit {
+
+    campos: Array<string> = ['id','nome','telefone','celular','email'];
 
     paginaContatos$: Observable<MyObject>;
 

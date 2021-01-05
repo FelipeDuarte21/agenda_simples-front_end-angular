@@ -1,24 +1,25 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { CardComponent } from "./card/card.component";
 import { ExibicaoComponent } from "./exibicao.component";
-import { RemocaoComponent } from "../remocao/remocao.component";
+import { MascaraNumeroPipe } from "./mascara-numero.pipe";
+import { PrimeiraMaiusculaPipe } from "./primeira-maiuscula.pipe";
 import { TabelaComponent } from "./tabela/tabela.component";
 
 @NgModule({
-    declarations: 
-    [
+    declarations: [
         ExibicaoComponent,
         CardComponent,
         TabelaComponent,
-        RemocaoComponent
+        PrimeiraMaiusculaPipe,
+        MascaraNumeroPipe
     ],
     exports: [ExibicaoComponent],
-    imports: 
-    [
-        CommonModule,
-        RouterModule
+    imports: [
+        CommonModule
+    ],
+    providers: [
+        PrimeiraMaiusculaPipe
     ]
 })
 export class ExibicaoModule{

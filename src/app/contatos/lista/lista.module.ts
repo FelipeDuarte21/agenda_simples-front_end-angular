@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { ExibicaoModule } from "src/app/compartilhado/componentes/exibicao/exibicao.module";
 import { BuscaModule } from "./busca/busca.module";
-import { ExibicaoModule } from "./exibicao/exibicacao.module";
 import { ListaComponent } from "./lista.component";
 
 @NgModule({

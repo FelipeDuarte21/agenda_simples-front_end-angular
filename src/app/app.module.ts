@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CabecalhoModule } from './cabecalho/cabecalho.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +12,6 @@ import { CabecalhoModule } from './cabecalho/cabecalho.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  bootstrap: [AppComponent]  
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

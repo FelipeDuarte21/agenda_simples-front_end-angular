@@ -9,21 +9,21 @@
             <i class="fa fa-table mr-1"></i>Tabela
         </a>
     </li>
-</ul>
+</ul> 
 
 <div class="tab-content mt-4">
 
     <!--Cards-->
     <div class="tab-pane fade show active" id="cards">
 
-        <card [contatos]="contatos" (excluir)="excluindo()"></card>
+        <card [campos]="campos" [objetoDados]="objetoDados" (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
 
     </div>
 
     <!--Tabela-->
     <div class="tab-pane fade" id="tabela">
 
-        <tabela [contatos]="contatos" (excluir)="excluindo()"></tabela>
+        <tabela [campos]="campos" [objetoDados]="objetoDados" (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
 
     </div>
 

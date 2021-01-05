@@ -1,44 +1,33 @@
 import { CommonModule } from "@angular/common";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
-import { TextMaskModule } from 'angular2-text-mask';
 
-
-import { CadastroComponent } from "./cadastro/cadastro.component";
-import { EdicaoComponent } from "./edicao/edicao.component";
 import { ContatoRountingModule } from "./contato-routing.module";
-import { ContatoService } from "./contato.service";
+import { CabecalhoModule } from "../cabecalho/cabecalho.module";
+import { CadastroModule } from "./cadastro/cadastro.module";
+import { EdicaoModule } from "./edicao/edicao.module";
 import { ListaModule } from "./lista/lista.module";
+
+import { ContatoService } from "./contato.service";
 import { InterceptadorService } from "../autenticacao/interceptador/interceptador.service";
 import { ContatoGuardService } from "./contato-guard.service";
 import { UsuarioService } from "../autenticacao/usuario/usuario.service";
+
 import { ContatoComponent } from "./contato.component";
-import { CabecalhoModule } from "../cabecalho/cabecalho.module";
+import { DesmascaraNumeroPipe } from "./desmascara-numero.pipe";
 
 
 @NgModule({
-    declarations: [
-        ContatoComponent,
-        CadastroComponent,
-        EdicaoComponent
-    ],
-    exports: [
-        ContatoComponent,
-        CadastroComponent,
-        EdicaoComponent
-    ],
+    declarations: [ContatoComponent],
+    exports: [ContatoComponent],
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        HttpClientModule,
-        TextMaskModule,
-        ListaModule,
         ContatoRountingModule,
-        CabecalhoModule
+        HttpClientModule,
+        CabecalhoModule,
+        CadastroModule,
+        EdicaoModule,
+        ListaModule
     ],
     providers: [
         ContatoService,
@@ -48,7 +37,8 @@ import { CabecalhoModule } from "../cabecalho/cabecalho.module";
             multi: true
         },
         ContatoGuardService,
-        UsuarioService
+        UsuarioService,
+        DesmascaraNumeroPipe
     ]
 })
 export class ContatoModule{

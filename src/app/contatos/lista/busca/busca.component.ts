@@ -9,14 +9,14 @@ export class BuscaComponent{
     @Input() totalDePaginas:number;
     @Input() paginaAtual:number;
 
-    @Output() emitNome = new EventEmitter();
+    @Output() buscarPorNome = new EventEmitter();
     @Output() emitQtdPorPagina = new EventEmitter();
     @Output() emitBuscarPorPagina = new EventEmitter();
 
     constructor(){}
 
-    buscarPorNome(nome:string){
-        return this.emitNome.emit(nome);
+    eventoBuscarPorNome(nome:string){
+        return this.buscarPorNome.emit(nome);
     }
 
     qtdPorPagina(qtd:string){

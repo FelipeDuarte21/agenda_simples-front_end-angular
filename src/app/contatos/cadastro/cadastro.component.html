@@ -6,6 +6,10 @@
 
             <a routerLink="/contatos" class="btn btn-outline-secondary mb-4 mt-5"><i class="fa fa-undo mr-1"></i>Voltar</a>
 
+            <div class="alert alert-danger text-center" *ngIf="erro">
+                {{mensagemErro}}
+            </div>
+
             <form [formGroup]="formCadastro" (submit)="enviar()" class="mt-3">
 
                 <div class="form-group">
