@@ -2,24 +2,25 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-11 mb-3" *ngIf="(paginaContatos$ | async) as paginaContatos">
+        <div class="col-12 col-md-11 mb-3">
 
-            <a [routerLink]="['cadastrar']" class="btn btn-info mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
+            <a routerLink="cadastrar" class="btn btn-info mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
         
-            <ng-container *ngIf="paginaContatos.content.length != 0">
+            <ng-container *ngIf="contatos?.length != 0">
 
                 <!--Componentes de busca-->
-                <busca [totalDePaginas]="paginaContatos.totalPages" [paginaAtual]="paginaContatos.number" 
-                (emitNome)="buscarPorNome($event)" (emitBuscarPorPagina)="buscarPorPagina($event)" 
-                    (emitQtdPorPagina)="setQtdPorPagina($event)">
+                <busca [totalPaginas]="totalPaginas" [paginaAtual]="paginaAtual"
+                    (buscarPorNome)="eventoBuscarPorNome($event)" (alterarPagina)="eventoAlterarPagina($event)"
+                        (alterarQtdPorPagina)="eventoAlterarQtdPorPagina($event)">
                 </busca> 
     
                 <!--Exibição-->
-                <exibicao [campos]="campos" [objetoDados]="paginaContatos.content"></exibicao>
+                <exibicao [campos]="campos" [objetoDados]="contatos" 
+                    (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></exibicao>
 
             </ng-container>
 
-            <div class="alert alert-warning text-center" *ngIf="paginaContatos.content.length == 0">
+            <div class="alert alert-warning text-center" *ngIf="contatos?.length == 0">
                 Nenhum <span class="font-weight-bolder">contato</span> cadastrado!
             </div>
                     
@@ -27,5 +28,5 @@
 
     </div>
 
-</div>
+</div> 
 

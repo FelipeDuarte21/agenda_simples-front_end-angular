@@ -3,7 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { ContatoRountingModule } from "./contato-routing.module";
-import { CabecalhoModule } from "../cabecalho/cabecalho.module";
+import { CabecalhoModule } from "../compartilhado/cabecalho/cabecalho.module";
 import { CadastroModule } from "./cadastro/cadastro.module";
 import { EdicaoModule } from "./edicao/edicao.module";
 import { ListaModule } from "./lista/lista.module";
@@ -18,7 +18,10 @@ import { DesmascaraNumeroPipe } from "./desmascara-numero.pipe";
 
 
 @NgModule({
-    declarations: [ContatoComponent],
+    declarations: [
+        ContatoComponent,
+        DesmascaraNumeroPipe
+    ],
     exports: [ContatoComponent],
     imports: [
         CommonModule,
@@ -37,8 +40,7 @@ import { DesmascaraNumeroPipe } from "./desmascara-numero.pipe";
             multi: true
         },
         ContatoGuardService,
-        UsuarioService,
-        DesmascaraNumeroPipe
+        UsuarioService
     ]
 })
 export class ContatoModule{

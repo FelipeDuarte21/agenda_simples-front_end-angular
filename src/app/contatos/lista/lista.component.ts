@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MyObject } from '../contato.model';
+import { Router } from '@angular/router';
+
 import { ContatoService } from '../contato.service';
+
+import { Contato } from '../contato.model';
 
 @Component({
   selector: 'lista',
   templateUrl: './lista.component.html'
 })
-export class ListaComponent implements OnInit {
+export class ListaComponent implements OnInit { 
 
     campos: Array<string> = ['id','nome','telefone','celular','email'];
 
-    paginaContatos$: Observable<MyObject>;
+    contatos: Array<Contato>;
 
-    paginaAtual:number = 0;
-    qtdPorPagina:number = 4; 
-    totalDePaginas:number = 1;
+    paginaAtual: number = 0;
+    qtdPorPagina: number = 4; 
+    totalPaginas: number = 1;
 
-    private nome:string = null;
+    private nome: string = null;
 
     constructor(
-        private contatoService:ContatoService
+        private contatoService:ContatoService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -29,20 +31,27 @@ export class ListaComponent implements OnInit {
     }
 
     buscarTodos(paginaAtual:number,qtdPorPagina:number){
-        this.paginaContatos$ = this.contatoService
-            .buscarTodos(paginaAtual,qtdPorPagina)
-            .pipe(tap(res => {
-                this.totalDePaginas = res.totalPages;
+        this.contatoService.buscarTodos(paginaAtual,qtdPorPagina).subscribe(
+            pagina => {
+                this.contatos = pagina.content
+                this.totalPaginas = pagina.totalPages;
                 this.paginaAtual = paginaAtual;
-            }));
+            }
+        );
     }
 
-    buscarPorPagina(pagina: any){
+    eventoBuscarPorNome(nome:string){
+        this.nome = nome;
+        if(this.nome.length == 0) this.nome == null;
+        this.estadoAtual(0,this.qtdPorPagina);
+    }
+
+    eventoAlterarPagina(pagina:number){
         this.estadoAtual(pagina,this.qtdPorPagina);
     }
 
-    setQtdPorPagina(qtd:number){
-        this.qtdPorPagina = qtd;
+    eventoAlterarQtdPorPagina(quantidade:number){
+        this.qtdPorPagina = quantidade;
         this.paginaAtual = 0;
         this.estadoAtual(this.paginaAtual,this.qtdPorPagina);
     }
@@ -55,22 +64,22 @@ export class ListaComponent implements OnInit {
         }
     }
 
-    setNome(nome:string){
-        this.nome = nome;
-        if(this.nome.length == 0) this.nome == null;
-        this.estadoAtual(0,this.qtdPorPagina);
-    }
-
     buscarPorNome(nome:string, pagina:number = 0){
-        this.contatoService.buscarPorNome(nome,pagina,this.qtdPorPagina)
-        .subscribe(res => {
-            this.totalDePaginas = res.totalPages;
-            this.paginaAtual = res.number;
-        });
+        this.contatoService.buscarPorNome(nome,pagina,this.qtdPorPagina).subscribe(
+            pagina => {
+                this.contatos = pagina.content;
+                this.totalPaginas = pagina.totalPages;
+                this.paginaAtual = pagina.number;
+            }
+        );
     }
 
-    atualizarLista(){
-        this.buscarTodos(0,this.qtdPorPagina);
+    eventoEditar(idContato:string){
+        this.router.navigate(['/contatos/editar',idContato]);
+    }
+
+    eventoExcluir(idContato:string){
+        this.router.navigate(['/contatos/excluir',idContato]);
     }
     
 }

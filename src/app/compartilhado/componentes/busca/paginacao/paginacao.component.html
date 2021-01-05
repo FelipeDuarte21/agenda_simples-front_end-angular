@@ -2,13 +2,17 @@
 
     <div class="col-6 text-center">
 
-        <a class="btn btn-outline-secondary btn-sm mr-1" (click)="nextOrPreviousPage(currentPage-1)" 
-            *ngIf="currentPage != 0">
+        <a class="btn btn-outline-secondary btn-sm mr-1" 
+            (click)="eventoAlterarPagina(paginaAtual-1)" *ngIf="paginaAtual!=0">
+
             <i class="fa fa-angle-double-left"></i>
         </a>
-        <span>{{currentPage+1}} de {{totalPages}}</span>
-        <a class="btn btn-outline-secondary btn-sm ml-1" (click)="nextOrPreviousPage(currentPage+1)"
-            *ngIf="(currentPage+1) != totalPages">
+
+        <span>{{paginaAtual+1}} de {{totalPaginas}}</span>
+
+        <a class="btn btn-outline-secondary btn-sm ml-1" 
+            (click)="eventoAlterarPagina(paginaAtual+1)" *ngIf="(paginaAtual+1) != totalPaginas">
+
             <i class="fa fa-angle-double-right"></i>
         </a>
     
@@ -17,7 +21,9 @@
     <div class="col-6">
         <form class="form-inline float-md-right">
             <label for="size" class="mr-2 d-none d-sm-block">Exibir:</label>
-            <select name="size" id="size" class="form-control form-control-sm" (change)="onChange($event.target.value)">
+            <select name="size" id="size" class="form-control form-control-sm"
+                (change)="eventoAlterarQtdPorPagina($event.target.value)">
+                
                 <option value="4">4</option>
                 <option value="8">8</option>
                 <option value="12">12</option>
@@ -26,7 +32,7 @@
     </div>
 
 </div>
-
+ 
 
 
     

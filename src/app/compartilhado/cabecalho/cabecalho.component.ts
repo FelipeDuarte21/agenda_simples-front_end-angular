@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Observable } from "rxjs";
-import { Usuario } from "../autenticacao/usuario/usuario.model";
-import { UsuarioService } from "../autenticacao/usuario/usuario.service";
+import { Usuario } from "../../autenticacao/usuario/usuario.model";
+import { UsuarioService } from "../../autenticacao/usuario/usuario.service";
 
 @Component({
     selector: 'cabecalho',

@@ -1,6 +1,6 @@
-<form [formGroup]="formBuscaNome" class="form-inline" (submit)="pesquisar()"> 
+<form [formGroup]="formBuscaNome" class="form-inline" (submit)="eventoBuscarPorNome()"> 
     <input type="text" formControlName="busca" class="form-control form-control-sm" placeholder="digite o nome"
-        (keyup)="pesquisar()">
+        (keyup)="eventoBuscarPorNome()">
     <button type="submit" class="btn btn-primary btn-sm ml-1 d-none d-sm-block">
         <i class="fa fa-search mr-1"></i>Buscar
     </button>

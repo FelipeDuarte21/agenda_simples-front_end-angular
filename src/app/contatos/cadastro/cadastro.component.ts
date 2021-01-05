@@ -8,7 +8,10 @@ import { DesmascaraNumeroPipe } from '../desmascara-numero.pipe';
 
 @Component({
   selector: 'cadastro',
-  templateUrl: './cadastro.component.html'
+  templateUrl: './cadastro.component.html',
+  providers: [
+    DesmascaraNumeroPipe
+  ]
 })
 export class CadastroComponent implements OnInit {
 

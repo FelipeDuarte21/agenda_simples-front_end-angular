@@ -6,12 +6,13 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 })
 export class BuscaComponent{
 
-    @Input() totalDePaginas:number;
+    @Input() totalPaginas:number;
     @Input() paginaAtual:number;
 
     @Output() buscarPorNome = new EventEmitter();
-    @Output() emitQtdPorPagina = new EventEmitter();
-    @Output() emitBuscarPorPagina = new EventEmitter();
+    @Output() alterarPagina = new EventEmitter();
+    @Output() alterarQtdPorPagina = new EventEmitter();
+    
 
     constructor(){}
 
@@ -19,12 +20,12 @@ export class BuscaComponent{
         return this.buscarPorNome.emit(nome);
     }
 
-    qtdPorPagina(qtd:string){
-        return this.emitQtdPorPagina.emit(qtd);
+    eventoAlterarPagina(pagina:number){
+        return this.alterarPagina.emit(pagina);
+    }
+    
+    eventoAlterarQtdPorPagina(quantidade:number){
+        return this.alterarQtdPorPagina.emit(quantidade);
     }
 
-    buscarPorPagina(pagina:string){
-        return this.emitBuscarPorPagina.emit(pagina);
-    }
-
-} 
+}

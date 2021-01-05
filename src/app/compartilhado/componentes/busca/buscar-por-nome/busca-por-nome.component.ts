@@ -9,7 +9,7 @@ export class BuscaPorNomeComponent implements OnInit {
 
     formBuscaNome: FormGroup;
     
-    @Output() nome = new EventEmitter();
+    @Output() buscarPornome = new EventEmitter();
 
     constructor(
         private formBuilder: FormBuilder
@@ -21,9 +21,9 @@ export class BuscaPorNomeComponent implements OnInit {
         });
     }
 
-    pesquisar(){
+    eventoBuscarPorNome(){
         let nome = this.formBuscaNome.get('busca').value;
-        this.nome.emit(nome);
+        return this.buscarPornome.emit(nome);
     }
  
 } 

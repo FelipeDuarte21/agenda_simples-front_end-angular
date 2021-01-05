@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { ContatoGuardService } from './contato-guard.service';
+
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { ContatoComponent } from './contato.component';
 import { EdicaoComponent } from './edicao/edicao.component';
 import { ListaComponent } from './lista/lista.component';
@@ -19,12 +20,12 @@ const routes: Routes = [
             },
             {
                 path: 'cadastrar', 
-                component: CadastroComponent
+                component: CadastroComponent,
             },
             {
                 path: 'editar/:id', 
                 component: EdicaoComponent
-            }
+            },
         ]
     },
   
