@@ -3,10 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContatoService } from '../contato.service';
 import { Contato } from '../contato.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DesmascaraNumeroPipe } from '../desmascara-numero.pipe';
 
 @Component({
   selector: 'edicao',
-  templateUrl: './edicao.component.html'
+  templateUrl: './edicao.component.html',
+  providers: [
+    DesmascaraNumeroPipe
+  ]
 })
 export class EdicaoComponent implements OnInit { 
 
@@ -19,35 +23,42 @@ export class EdicaoComponent implements OnInit {
         private formBuilder:FormBuilder,
         private route:ActivatedRoute, 
         private router: Router,
-        private contatoService:ContatoService
+        private contatoService:ContatoService,
+        private desmascaraNumero: DesmascaraNumeroPipe
     ) {}
 
     ngOnInit() {
 
+        this.formEdicao = this.formBuilder.group({
+            id: ['',Validators.required],
+            nome: ['',
+                [
+                    Validators.required,
+                    Validators.maxLength(50)
+                ]
+            ],
+            celular: ['',Validators.required],
+            telefone: ['',Validators.required],
+            email: ['',
+                [
+                    Validators.required,
+                    Validators.email,
+                    Validators.maxLength(80)
+                ]
+            ]
+        });
+
         let id = this.route.snapshot.params['id'];
 
-        this.contatoService.buscarPorId(id).subscribe(contato => {
-
-            this.formEdicao = this.formBuilder.group({
-                id: [contato.id,Validators.required],
-                nome: [contato.nome,
-                    [
-                        Validators.required,
-                        Validators.maxLength(50)
-                    ]
-                ],
-                celular: [contato.celular,Validators.required],
-                telefone: [contato.telefone,Validators.required],
-                email: [contato.email,
-                    [
-                        Validators.required,
-                        Validators.email,
-                        Validators.maxLength(80)
-                    ]
-                ]
-            });
-
-        });
+        this.contatoService.buscarPorId(id).subscribe(
+            contato => {
+                this.formEdicao.get('id').setValue(contato.id);
+                this.formEdicao.get('nome').setValue(contato.nome);
+                this.formEdicao.get('celular').setValue(contato.celular);
+                this.formEdicao.get('telefone').setValue(contato.telefone);
+                this.formEdicao.get('email').setValue(contato.email);
+            }
+        );
 
     }
 
@@ -59,16 +70,15 @@ export class EdicaoComponent implements OnInit {
 
         let contato = this.formEdicao.getRawValue() as Contato;
 
-        this.contatoService.alterar(contato)
-        .subscribe(res => {
+        contato.celular = this.desmascaraNumero.transform(contato.celular);
+        contato.telefone = this.desmascaraNumero.transform(contato.telefone);
 
-            this.formEdicao.reset();
-
-            this.router.navigate(['']);
-
-            alert('Alterado com sucesso!');
-
-        });
+        this.contatoService.alterar(contato).subscribe(
+            res => {
+                this.router.navigate(['']);
+                this.formEdicao.reset();
+            }
+        );
 
     }
 

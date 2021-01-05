@@ -18,6 +18,7 @@ export class ListaComponent implements OnInit {
     paginaAtual: number = 0;
     qtdPorPagina: number = 4; 
     totalPaginas: number = 1;
+    totalElementos: number = 0;
 
     private nome: string = null;
 
@@ -36,6 +37,7 @@ export class ListaComponent implements OnInit {
                 this.contatos = pagina.content
                 this.totalPaginas = pagina.totalPages;
                 this.paginaAtual = paginaAtual;
+                this.totalElementos = pagina.numberOfElements;
             }
         );
     }
@@ -79,7 +81,16 @@ export class ListaComponent implements OnInit {
     }
 
     eventoExcluir(idContato:string){
-        this.router.navigate(['/contatos/excluir',idContato]);
+        if(confirm('Deseja realmente excluir contato?')){
+
+            this.contatoService.excluir(idContato).subscribe(
+                res => {
+                    this.nome = null;
+                    this.buscarTodos(0,this.qtdPorPagina);
+                }
+            );
+
+        }
     }
     
 }

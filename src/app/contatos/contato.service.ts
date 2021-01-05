@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -31,7 +31,7 @@ export class ContatoService {
     }
 
     alterar(contato:Contato): Observable<Contato>{
-        return this.http.put<Contato>(this.API,contato);
+        return this.http.put<any>(this.API,contato);
     }
 
     excluir(id: string): Observable<any>{

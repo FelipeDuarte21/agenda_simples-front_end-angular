@@ -6,7 +6,7 @@
 
             <a routerLink="cadastrar" class="btn btn-info mt-5 mb-4"><i class="fa fa-plus mr-1"></i>Cadastrar</a>
         
-            <ng-container *ngIf="contatos?.length != 0">
+            <ng-container *ngIf="totalElementos != 0">
 
                 <!--Componentes de busca-->
                 <busca [totalPaginas]="totalPaginas" [paginaAtual]="paginaAtual"
@@ -20,7 +20,7 @@
 
             </ng-container>
 
-            <div class="alert alert-warning text-center" *ngIf="contatos?.length == 0">
+            <div class="alert alert-warning text-center" *ngIf="totalElementos == 0">
                 Nenhum <span class="font-weight-bolder">contato</span> cadastrado!
             </div>
                     

@@ -16,15 +16,19 @@
     <!--Cards-->
     <div class="tab-pane fade show active" id="cards">
 
-        <card [campos]="campos" [objetoDados]="objetoDados" (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
+        <card *ngIf="objetoDados.length!=0" [campos]="campos" [objetoDados]="objetoDados" 
+            (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
 
     </div>
 
     <!--Tabela-->
     <div class="tab-pane fade" id="tabela">
 
-        <tabela [campos]="campos" [objetoDados]="objetoDados" (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
+        <tabela *ngIf="objetoDados.length!=0" [campos]="campos" [objetoDados]="objetoDados" 
+            (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
 
     </div>
+
+    <p *ngIf="objetoDados.length==0" class="font-weight-lighter text-center">Nenhum resultado encontrado!</p>
 
 </div>
