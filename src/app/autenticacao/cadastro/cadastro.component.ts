@@ -13,6 +13,8 @@ export class CadastroComponent implements OnInit{
 
     formCadastro: FormGroup;
 
+    erro: boolean = false;
+
     constructor(
         private formBuilder: FormBuilder,
         private cadastroUsuarioService: CadastroUsuarioService,
@@ -54,12 +56,13 @@ export class CadastroComponent implements OnInit{
 
         this.cadastroUsuarioService.cadastrar(usuario).subscribe(
             resp => {
-                console.log(resp);
-
                 alert('Usuario cadastrado com sucesso!');
-
                 this.router.navigate(['']);
-
+            },
+            error => {
+                console.log(error),
+                this.erro = true;
+                this.formCadastro.reset();
             }
         )
         

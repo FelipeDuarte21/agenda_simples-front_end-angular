@@ -11,14 +11,14 @@ import { Contato } from '../contato.model';
 })
 export class ListaComponent implements OnInit { 
 
-    campos: Array<string> = ['id','nome','telefone','celular','email'];
+    campos: Array<string> = ['id','nome','celular','telefone','email'];
 
     contatos: Array<Contato>;
 
     paginaAtual: number = 0;
     qtdPorPagina: number = 4; 
     totalPaginas: number = 1;
-    totalElementos: number = 0;
+    totalElementos: number = 1;
 
     private nome: string = null;
 

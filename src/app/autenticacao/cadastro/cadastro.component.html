@@ -6,6 +6,8 @@
 
             <a routerLink="" class="btn btn-outline-secondary mt-1"><i class="fa fa-undo mr-1"></i>Voltar</a>
 
+            <div class="alert alert-danger text-center mt-5" *ngIf="erro">Usuário já cadastrado!</div>
+
             <form [formGroup]="formCadastro" (submit)="cadastrar()" class="mt-4">
 
                 <div class="form-group">

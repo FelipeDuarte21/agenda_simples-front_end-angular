@@ -1,34 +1,38 @@
-<ul class="nav nav-tabs mt-2">
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#cards">
-            <i class="fa fa-id-card mr-1"></i>Cards
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tabela">
-            <i class="fa fa-table mr-1"></i>Tabela
-        </a>
-    </li>
-</ul> 
+<ng-container *ngIf="objetoDados.length!=0">
 
-<div class="tab-content mt-4">
-
-    <!--Cards-->
-    <div class="tab-pane fade show active" id="cards">
-
-        <card *ngIf="objetoDados.length!=0" [campos]="campos" [objetoDados]="objetoDados" 
-            (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
-
+    <ul class="nav nav-tabs mt-2">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#cards">
+                <i class="fa fa-id-card mr-1"></i>Cards
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tabela">
+                <i class="fa fa-table mr-1"></i>Tabela
+            </a>
+        </li>
+    </ul> 
+    
+    <div class="tab-content mt-4">
+    
+        <!--Cards-->
+        <div class="tab-pane fade show active" id="cards">
+    
+            <card [campos]="campos" [objetoDados]="objetoDados" 
+                (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
+    
+        </div>
+    
+        <!--Tabela-->
+        <div class="tab-pane fade" id="tabela">
+    
+            <tabela  [campos]="campos" [objetoDados]="objetoDados" 
+                (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
+    
+        </div>
+    
     </div>
 
-    <!--Tabela-->
-    <div class="tab-pane fade" id="tabela">
+</ng-container>
 
-        <tabela *ngIf="objetoDados.length!=0" [campos]="campos" [objetoDados]="objetoDados" 
-            (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
-
-    </div>
-
-    <p *ngIf="objetoDados.length==0" class="font-weight-lighter text-center">Nenhum resultado encontrado!</p>
-
-</div>
+<p *ngIf="objetoDados.length == 0" class="font-weight-lighter text-center mt-5">Nenhum resultado encontrado!</p>
