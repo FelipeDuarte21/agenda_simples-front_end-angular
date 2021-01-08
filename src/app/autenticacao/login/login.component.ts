@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { UsuarioPerfil } from "../usuario/usuario.model";
+import { UsuarioPerfil } from "../../compartilhado/usuario/usuario.model";
 import { UsuarioService } from "../usuario/usuario.service";
 import { LoginService } from "./login.service";
 
@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit{
                 
                 this.usuarioService.recuperarUsuario().subscribe(
                     usuario => {
-
-                        console.log(usuario);
 
                         let rota = '';
                         

@@ -1,4 +1,4 @@
-<ng-container *ngIf="objetoDados.length!=0">
+<ng-container *ngIf="objetoDados?.length!=0">
 
     <ul class="nav nav-tabs mt-2">
         <li class="nav-item">
@@ -18,7 +18,7 @@
         <!--Cards-->
         <div class="tab-pane fade show active" id="cards">
     
-            <card [campos]="campos" [objetoDados]="objetoDados" 
+            <card [campos]="campos" [objetoDados]="objetoDados" [exibeEditar]="exibeEditar" [exibeExcluir]="exibeExcluir" 
                 (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></card>
     
         </div>
@@ -26,7 +26,7 @@
         <!--Tabela-->
         <div class="tab-pane fade" id="tabela">
     
-            <tabela  [campos]="campos" [objetoDados]="objetoDados" 
+            <tabela  [campos]="campos" [objetoDados]="objetoDados" [exibeEditar]="exibeEditar" [exibeExcluir]="exibeExcluir"
                 (editar)="eventoEditar($event)" (excluir)="eventoExcluir($event)"></tabela>
     
         </div>
@@ -35,4 +35,4 @@
 
 </ng-container>
 
-<p *ngIf="objetoDados.length == 0" class="font-weight-lighter text-center mt-5">Nenhum resultado encontrado!</p>
+<p *ngIf="objetoDados?.length == 0" class="font-weight-lighter text-center mt-5">Nenhum resultado encontrado!</p>

@@ -11,6 +11,9 @@ export class TabelaComponent{
 
     @Input() objetoDados: Array<any>;
 
+    @Input() exibeExcluir:boolean = true;
+    @Input() exibeEditar: boolean = true;
+
     @Output() editar = new EventEmitter();
     
     @Output() excluir = new EventEmitter();

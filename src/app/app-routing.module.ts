@@ -14,7 +14,11 @@ const routes: Routes = [
     },
     {
         path: 'contatos',
-        loadChildren: () => import('./contatos/contato.module').then(m => m.ContatoModule),
+        loadChildren: () => import('./contatos/contato.module').then(m => m.ContatoModule)
+    },
+    {
+        path: 'usuarios',
+        loadChildren: () => import('./usuarios/usuario.module').then(m => m.UsuarioModule)
     }
 ];
 

@@ -7,6 +7,7 @@ import { AutenticacaoRountingModule } from "./autenticacao-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { LoginGuardService } from "./login/login-guard.service";
 import { CadastroComponent } from "./cadastro/cadastro.component";
+import { UsuarioModule } from "../compartilhado/usuario/usuario.module";
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { CadastroComponent } from "./cadastro/cadastro.component";
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        RouterModule
+        RouterModule,
+        UsuarioModule
     ],
     providers: [
         LoginGuardService

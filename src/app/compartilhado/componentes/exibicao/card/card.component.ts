@@ -14,6 +14,9 @@ export class CardComponent{
     @Input() campos: Array<string>;
 
     @Input() objetoDados: Array<any>;
+
+    @Input() exibeExcluir:boolean = true;
+    @Input() exibeEditar: boolean = true;
     
     @Output() excluir = new EventEmitter();
 

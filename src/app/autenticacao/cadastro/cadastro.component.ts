@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { UsuarioPerfilNumero } from "../usuario/usuario.model";
-import { CadastroUsuarioService } from "./cadastro-usuario.service";
+import { UsuarioService } from "src/app/compartilhado/usuario/usuario.service";
+import { Usuario, UsuarioPerfilNumero } from "../../compartilhado/usuario/usuario.model";
 
 @Component({
     selector: 'cadastro-usuario',
-    templateUrl: './cadastro.component.html',
-    providers: [CadastroUsuarioService]
+    templateUrl: './cadastro.component.html'
 })
 export class CadastroComponent implements OnInit{
 
@@ -17,7 +16,7 @@ export class CadastroComponent implements OnInit{
 
     constructor(
         private formBuilder: FormBuilder,
-        private cadastroUsuarioService: CadastroUsuarioService,
+        private usuarioService: UsuarioService,
         private router: Router
     ){}
 
@@ -43,7 +42,7 @@ export class CadastroComponent implements OnInit{
                     Validators.maxLength(16)
                 ]
             ],
-            tipo: [[UsuarioPerfilNumero.ROLE_USER]]
+            tipo: [[UsuarioPerfilNumero.ROLE_ADMIN]]
         });
     }
 
@@ -52,9 +51,9 @@ export class CadastroComponent implements OnInit{
     }
 
     cadastrar(){
-        let usuario = this.formCadastro.getRawValue();
+        let usuario = this.formCadastro.getRawValue() as Usuario;
 
-        this.cadastroUsuarioService.cadastrar(usuario).subscribe(
+        this.usuarioService.cadastrar(usuario).subscribe(
             resp => {
                 alert('Usuario cadastrado com sucesso!');
                 this.router.navigate(['']);

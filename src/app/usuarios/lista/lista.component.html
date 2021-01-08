@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-11 mt-5 mb-4">
+
+            <ng-container *ngIf="totalElementos!=0">
+
+                <!--Componentes de busca-->
+                <busca [totalPaginas]="totalPaginas" [paginaAtual]="paginaAtual"
+                    (buscarPorNome)="eventoBuscarPorNome($event)" (alterarPagina)="eventoAlterarPagina($event)"
+                        (alterarQtdPorPagina)="eventoAlterarQtdPorPagina($event)">
+                </busca> 
+    
+                <!--Exibição-->
+                <exibicao [campos]="campos" [objetoDados]="usuarios" [exibeEditar]="false" [exibeExcluir]="false"></exibicao>
+
+            </ng-container>
+
+            <div class="alert alert-warning text-center" *ngIf="totalElementos == 0">
+                Nenhum <span class="font-weight-bolder">contato</span> cadastrado!
+            </div>
+                    
+        </div>
+
+    </div>
+
+</div> 

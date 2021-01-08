@@ -6,15 +6,15 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginComponent,
-    canActivate: [LoginGuardService]
-  },
-  {
-    path: 'cadastrar',
-    component: CadastroComponent
-  }
+    {
+        path: '',
+        component: LoginComponent,
+        canActivate: [LoginGuardService]
+    },
+    {
+        path: 'cadastrar',
+        component: CadastroComponent
+    }
 ];
 
 @NgModule({
