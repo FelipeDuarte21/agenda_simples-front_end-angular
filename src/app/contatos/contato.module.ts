@@ -15,6 +15,7 @@ import { UsuarioService } from "../autenticacao/usuario/usuario.service";
 
 import { ContatoComponent } from "./contato.component";
 import { DesmascaraNumeroPipe } from "./desmascara-numero.pipe";
+import { RodapeModule } from "../compartilhado/rodape/rodape.module";
 
 
 @NgModule({

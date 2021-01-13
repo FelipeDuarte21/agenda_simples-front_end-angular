@@ -1,3 +1,7 @@
 .nao-quebra-tabela{
     white-space: nowrap;
 }
+
+.table-responsive{
+    margin-bottom: 70px;
+}
