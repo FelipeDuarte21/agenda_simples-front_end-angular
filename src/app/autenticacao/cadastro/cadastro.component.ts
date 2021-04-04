@@ -42,7 +42,7 @@ export class CadastroComponent implements OnInit{
                     Validators.maxLength(16)
                 ]
             ],
-            tipo: [[UsuarioPerfilNumero.ROLE_ADMIN]]
+            tipo: [[UsuarioPerfilNumero.ROLE_USER]]
         });
     }
 
